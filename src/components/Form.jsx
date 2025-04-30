@@ -20,12 +20,21 @@ export default function Form({ onSubmit }) {
     onSubmit(form);
   };
 
+  const labels = {
+    projectName: "Nome do Projeto",
+    description: "Descrição",
+    technologies: "Tecnologias",
+    usage: "Uso",
+    installation: "Instalação",
+    license: "Licença",
+  };
+
   return (
     <form className="space-y-4" onSubmit={handleSubmit}>
       {Object.entries(form).map(([key, value]) => (
         <div key={key}>
-          <label className="block mb-1 font-medium capitalize" htmlFor={key}>
-            {key}
+          <label className="block mb-1 font-medium" htmlFor={key}>
+            {labels[key] || key}
           </label>
           <textarea
             id={key}
@@ -37,7 +46,10 @@ export default function Form({ onSubmit }) {
           />
         </div>
       ))}
-      <button type="submit" className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded">
+      <button
+        type="submit"
+        className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
+      >
         Gerar README
       </button>
     </form>
